@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://cix7816vkavo2"]
+
+[ext_resource type="Texture2D" uid="uid://q61716t25sco" path="res://Sprites/platforms/SingleGrassTile.png" id="1_vrqgr"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s7c7u"]
+size = Vector2(16, 16)
+
+[node name="Block" type="StaticBody2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_s7c7u")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(1.14286, 1.14286)
+texture = ExtResource("1_vrqgr")
