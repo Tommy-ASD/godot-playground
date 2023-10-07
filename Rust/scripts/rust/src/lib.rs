@@ -1,6 +1,8 @@
 use godot::{
     engine::{Sprite2D, Sprite2DVirtual},
-    prelude::{gdextension, godot_api, godot_print, Base, ExtensionLibrary, GodotClass},
+    prelude::{
+        gdextension, godot_api, godot_print, Base, ExtensionLibrary, GodotClass, Input, Vector2,
+    },
 };
 
 struct MyExtension;
@@ -12,7 +14,6 @@ unsafe impl ExtensionLibrary for MyExtension {}
 #[class(base=Sprite2D)]
 struct Player {
     speed: f64,
-    angular_speed: f64,
 
     #[base]
     sprite: Base<Sprite2D>,
@@ -25,17 +26,38 @@ impl Sprite2DVirtual for Player {
 
         Self {
             speed: 400.0,
-            angular_speed: std::f64::consts::PI,
             sprite,
         }
     }
 
     fn physics_process(&mut self, delta: f64) {
-        // In GDScript, this would be:
-        // rotation += angular_speed * delta
+        let input = Input::singleton();
 
-        self.sprite.rotate((self.angular_speed * delta) as f32);
-        // The 'rotate' method requires a f32,
-        // therefore we convert 'self.angular_speed * delta' which is a f64 to a f32
+        match (
+            input.is_action_pressed("ui_right".into()),
+            input.is_action_pressed("ui_left".into()),
+        ) {
+            (true, false) => {
+                self.sprite
+                    .translate(Vector2::RIGHT * self.speed as f32 * delta as f32);
+                godot_print!("ui_right pressed")
+            }
+            (false, true) => {
+                godot_print!("ui_left pressed")
+            }
+            _ => {} // if neither or both are pressed
+        }
     }
+}
+
+#[godot_api]
+impl Player {
+    #[func]
+    fn increase_speed(&mut self, amount: f64) {
+        self.speed += amount;
+        self.sprite.emit_signal("speed_increased".into(), &[]);
+    }
+
+    #[signal]
+    fn speed_increased();
 }
