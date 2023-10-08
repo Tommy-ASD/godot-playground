@@ -10,4 +10,4 @@ position = Vector2(192, 432)
 position = Vector2(8, 72)
 
 [node name="Char" parent="." instance=ExtResource("2_xudw6")]
-position = Vector2(56, 40)
+position = Vector2(8, 40)

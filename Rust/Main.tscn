@@ -1,0 +1,37 @@
+[gd_scene load_steps=3 format=3 uid="uid://d3068v2dd7w6v"]
+
+[ext_resource type="PackedScene" uid="uid://cix7816vkavo2" path="res://block.tscn" id="2_ghhcc"]
+[ext_resource type="PackedScene" uid="uid://bt1skj881lo6c" path="res://player.tscn" id="2_y2kxd"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource("2_y2kxd")]
+position = Vector2(512, 496)
+scale = Vector2(0.0633741, 0.0633741)
+
+[node name="Level" type="Node2D" parent="."]
+position = Vector2(477.375, 554.813)
+
+[node name="Block" parent="Level" instance=ExtResource("2_ghhcc")]
+position = Vector2(-21.375, 13.1875)
+
+[node name="Block2" parent="Level" instance=ExtResource("2_ghhcc")]
+position = Vector2(90.625, 13.1875)
+
+[node name="Block3" parent="Level" instance=ExtResource("2_ghhcc")]
+position = Vector2(74.625, 13.1875)
+
+[node name="Block4" parent="Level" instance=ExtResource("2_ghhcc")]
+position = Vector2(58.625, 13.1875)
+
+[node name="Block5" parent="Level" instance=ExtResource("2_ghhcc")]
+position = Vector2(42.625, 13.1875)
+
+[node name="Block6" parent="Level" instance=ExtResource("2_ghhcc")]
+position = Vector2(26.625, 13.1875)
+
+[node name="Block7" parent="Level" instance=ExtResource("2_ghhcc")]
+position = Vector2(10.625, 13.1875)
+
+[node name="Block8" parent="Level" instance=ExtResource("2_ghhcc")]
+position = Vector2(-5.375, 13.1875)
